@@ -111,7 +111,7 @@ export default {
   width: 100%;
   @include flexCenter;
   position: sticky;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(235, 235, 235, 0.5);
   top: 5rem;
   z-index: 9999;
   .container {
@@ -210,7 +210,6 @@ export default {
         &_icon {
           @include flexCenter;
           justify-content: flex-start;
-
           padding-bottom: 0.5rem;
           li {
             color: $pink;
@@ -223,7 +222,6 @@ export default {
           }
           .iconWeb {
             width: 80%;
-
             margin-left: 0.5rem;
             font-size: 14px;
           }

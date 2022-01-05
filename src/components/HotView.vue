@@ -73,9 +73,6 @@ export default {
     },
   },
   methods: {
-    // imgError(view) {
-    //   view.Picture.PictureUrl1 = require("./../assets/logo.png");
-    // },
     getDetail(id) {
       this.viewData.map((item) => {
         if (item.ScenicSpotID === id) {
@@ -124,79 +121,79 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/scss/All.scss";
 
-.table {
-  .triangle {
-    &::after {
-      content: "";
-      border-style: solid;
-      border-width: 0 10px 20px 10px;
-      border-color: #f6f7f8 #f6f7f8 $pink #f6f7f8;
-    }
-  }
-  span {
-    margin: 1.75rem;
-    font-weight: 600;
-  }
-}
-
-.cards {
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
-  @include pad {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  @include web {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-.card {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
-  padding: 0.75rem;
-  height: 15rem;
-  justify-content: space-around;
-  position: relative;
-
-  &_favorite {
-    .add {
-      font-size: 0.85rem;
-    }
-    cursor: pointer;
-    position: absolute;
-    color: $pink;
-    bottom: 1rem;
-    right: 0.75rem;
-  }
-  &_img {
-    text-align: center;
-    img {
-      object-fit: cover;
-      aspect-ratio: 1 / 0.75;
-      width: 100%;
-    }
-  }
-  &_title {
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover {
-      color: $pink;
-    }
-  }
-  &_location {
-    display: flex;
-    align-items: flex-end;
-    .location {
-      color: $pink;
-      margin-right: 0.5rem;
+.container {
+  .table {
+    .triangle {
+      &::after {
+        content: "";
+        border-style: solid;
+        border-width: 0 10px 20px 10px;
+        border-color: #f6f7f8 #f6f7f8 $pink #f6f7f8;
+      }
     }
     span {
-      font-size: 12px;
-      color: $green;
+      margin: 1.75rem;
+      font-weight: 600;
+    }
+  }
+  .cards {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    @include pad {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include web {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .card {
+      background-color: rgb(255, 255, 255);
+      box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
+      padding: 0.75rem;
+      height: 15rem;
+      justify-content: space-around;
+      position: relative;
+
+      &_favorite {
+        .add {
+          font-size: 0.85rem;
+        }
+        cursor: pointer;
+        position: absolute;
+        color: $pink;
+        bottom: 1rem;
+        right: 0.75rem;
+      }
+      &_img {
+        text-align: center;
+        img {
+          object-fit: cover;
+          aspect-ratio: 1 / 0.75;
+          width: 100%;
+        }
+      }
+      &_title {
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover {
+          color: $pink;
+        }
+      }
+      &_location {
+        display: flex;
+        align-items: flex-end;
+        .location {
+          color: $pink;
+          margin-right: 0.5rem;
+        }
+        span {
+          font-size: 12px;
+          color: $green;
+        }
+      }
     }
   }
 }

@@ -65,44 +65,43 @@ export default {
 
 .table_first {
   padding-top: 6rem;
-}
+  .area {
+    text-align: center;
+    &_title {
+      font-size: 2.5rem;
+      padding-bottom: 1rem;
+      font-weight: 600;
+      text-shadow: 0.1em 0.1em rgb(255, 252, 252);
+    }
+    &_wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: inline-flex;
+      @include flexCenter;
+    }
+    &_btns {
+      display: flex;
+    }
+    &_btn {
+      cursor: pointer;
 
-.area {
-  text-align: center;
-  &_title {
-    font-size: 2.5rem;
-    padding-bottom: 1rem;
-    font-weight: 600;
-    text-shadow: 0.1em 0.1em rgb(255, 252, 252);
-  }
-  &_wrapper {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: inline-flex;
-    @include flexCenter;
-  }
-  &_btns {
-    display: flex;
-  }
-  &_btn {
-    cursor: pointer;
-
-    button {
-      all: unset;
-      border: 1px solid green;
-      border-radius: 10px;
-      padding: 0.55rem 1rem;
-      margin: 0.5rem 0.5rem;
-      width: 20px;
-      &:hover {
+      button {
+        all: unset;
+        border: 1px solid green;
+        border-radius: 10px;
+        padding: 0.55rem 1rem;
+        margin: 0.5rem 0.5rem;
+        width: 20px;
+        &:hover {
+          background: $pink;
+          color: white;
+        }
+      }
+      .active {
         background: $pink;
         color: white;
       }
-    }
-    .active {
-      background: $pink;
-      color: white;
     }
   }
 }

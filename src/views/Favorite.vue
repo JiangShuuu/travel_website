@@ -32,130 +32,138 @@
         <span style="--i: 10">.</span>
       </div>
     </div>
-    <div class="main table_first">
-      <div class="activity" v-if="activityData.length > 0">
-        <div class="table">
-          <div class="circle"></div>
-          <span>最愛活動清單</span>
-        </div>
-        <div class="cards">
-          <div
-            class="card"
-            v-for="activity in activityData"
-            :key="activity.ActivityID"
-          >
-            <div class="card_img">
-              <img :src="activity.Picture.PictureUrl1" alt="" />
-            </div>
-            <div class="card_title">
-              <span>{{ activity.ActivityName }}</span>
-            </div>
+    <div class="mainContain" v-else>
+      <div class="titleImage">
+        <img src="./../assets/icon/最愛.png" alt="" />
+        <span>最愛清單列表</span>
+      </div>
+      <div class="main">
+        <div class="activity" v-if="activityData.length > 0">
+          <div class="table">
+            <div class="circle"></div>
+            <span>最愛活動清單</span>
+          </div>
+          <div class="cards">
             <div
-              class="card_detail"
-              @click.stop.prevent="getDetail(activity.ActivityID)"
+              class="card"
+              v-for="activity in activityData"
+              :key="activity.ActivityID"
             >
-              <button>查看詳情</button>
-            </div>
-            <div class="card_favorite">
+              <div class="card_img">
+                <img :src="activity.Picture.PictureUrl1" alt="" />
+              </div>
+              <div class="card_title">
+                <span>{{ activity.ActivityName }}</span>
+              </div>
               <div
-                @click.stop.prevent="removeActivity(activity.ActivityID)"
-                class="remove"
+                class="card_detail"
+                @click.stop.prevent="getDetail(activity.ActivityID)"
               >
-                ❤
+                <button>查看詳情</button>
+              </div>
+              <div class="card_favorite">
+                <div
+                  @click.stop.prevent="removeActivity(activity.ActivityID)"
+                  class="remove"
+                >
+                  ❤
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="view" v-if="viewData.length > 0">
-        <div class="table">
-          <div class="circle"></div>
-          <span>最愛景點清單</span>
-        </div>
-        <div class="cards">
-          <div class="card" v-for="view in viewData" :key="view.ScenicSpotID">
-            <div class="card_img">
-              <img :src="view.Picture.PictureUrl1" alt="" />
-            </div>
-            <div class="card_title">
-              <span>{{ view.ScenicSpotName }}</span>
-            </div>
-            <div
-              class="card_detail"
-              @click.stop.prevent="getDetail(view.ScenicSpotID)"
-            >
-              <button>查看詳情</button>
-            </div>
-            <div class="card_favorite">
+        <div class="view" v-if="viewData.length > 0">
+          <div class="table">
+            <div class="circle"></div>
+            <span>最愛景點清單</span>
+          </div>
+          <div class="cards">
+            <div class="card" v-for="view in viewData" :key="view.ScenicSpotID">
+              <div class="card_img">
+                <img :src="view.Picture.PictureUrl1" alt="" />
+              </div>
+              <div class="card_title">
+                <span>{{ view.ScenicSpotName }}</span>
+              </div>
               <div
-                class="remove"
-                @click.stop.prevent="removeView(view.ScenicSpotID)"
+                class="card_detail"
+                @click.stop.prevent="getDetail(view.ScenicSpotID)"
               >
-                ❤
+                <button>查看詳情</button>
+              </div>
+              <div class="card_favorite">
+                <div
+                  class="remove"
+                  @click.stop.prevent="removeView(view.ScenicSpotID)"
+                >
+                  ❤
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="restaurant" v-if="restaurantData.length > 0">
-        <div class="table">
-          <div class="circle"></div>
-          <span>最愛餐廳清單</span>
-        </div>
-        <div class="cards">
-          <div
-            class="card"
-            v-for="restaurant in restaurantData"
-            :key="restaurant.RestaurantID"
-          >
-            <div class="card_img">
-              <img :src="restaurant.Picture.PictureUrl1" alt="" />
-            </div>
-            <div class="card_title">
-              <span>{{ restaurant.RestaurantName }}</span>
-            </div>
+        <div class="restaurant" v-if="restaurantData.length > 0">
+          <div class="table">
+            <div class="circle"></div>
+            <span>最愛餐廳清單</span>
+          </div>
+          <div class="cards">
             <div
-              class="card_detail"
-              @click.stop.prevent="getDetail(restaurant.RestaurantID)"
+              class="card"
+              v-for="restaurant in restaurantData"
+              :key="restaurant.RestaurantID"
             >
-              <button>查看詳情</button>
-            </div>
-            <div class="card_favorite">
+              <div class="card_img">
+                <img :src="restaurant.Picture.PictureUrl1" alt="" />
+              </div>
+              <div class="card_title">
+                <span>{{ restaurant.RestaurantName }}</span>
+              </div>
               <div
-                class="remove"
-                @click.stop.prevent="removeRestaurant(restaurant.RestaurantID)"
+                class="card_detail"
+                @click.stop.prevent="getDetail(restaurant.RestaurantID)"
               >
-                ❤
+                <button>查看詳情</button>
+              </div>
+              <div class="card_favorite">
+                <div
+                  class="remove"
+                  @click.stop.prevent="
+                    removeRestaurant(restaurant.RestaurantID)
+                  "
+                >
+                  ❤
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="hotel" v-if="hotelData.length > 0">
-        <div class="table">
-          <div class="circle"></div>
-          <span>最愛住宿清單</span>
-        </div>
-        <div class="cards">
-          <div class="card" v-for="hotel in hotelData" :key="hotel.HotelID">
-            <div class="card_img">
-              <img :src="hotel.Picture.PictureUrl1" alt="" />
-            </div>
-            <div class="card_title">
-              <span>{{ hotel.HotelName }}</span>
-            </div>
-            <div
-              class="card_detail"
-              @click.stop.prevent="getDetail(hotel.HotelID)"
-            >
-              <button>查看詳情</button>
-            </div>
-            <div class="card_favorite">
+        <div class="hotel" v-if="hotelData.length > 0">
+          <div class="table">
+            <div class="circle"></div>
+            <span>最愛住宿清單</span>
+          </div>
+          <div class="cards">
+            <div class="card" v-for="hotel in hotelData" :key="hotel.HotelID">
+              <div class="card_img">
+                <img :src="hotel.Picture.PictureUrl1" alt="" />
+              </div>
+              <div class="card_title">
+                <span>{{ hotel.HotelName }}</span>
+              </div>
               <div
-                class="remove"
-                @click.stop.prevent="removeHotel(hotel.HotelID)"
+                class="card_detail"
+                @click.stop.prevent="getDetail(hotel.HotelID)"
               >
-                ❤
+                <button>查看詳情</button>
+              </div>
+              <div class="card_favorite">
+                <div
+                  class="remove"
+                  @click.stop.prevent="removeHotel(hotel.HotelID)"
+                >
+                  ❤
+                </div>
               </div>
             </div>
           </div>
@@ -296,152 +304,176 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/scss/All.scss";
 
-.choose_page {
-  padding-top: 5rem;
-  width: 100%;
-  height: 375px;
-  @include flexCenter;
-  flex-direction: column;
-  .span_area {
-    -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
-    span {
-      font-size: 3rem;
-      font-weight: 700;
-      display: inline-block;
-      text-transform: uppercase;
-      animation: animate 1s ease-in-out infinite;
-      animation-delay: calc(0.1s * var(--i));
-    }
-    @keyframes animate {
-      0% {
-        transform: translateY(0px);
-      }
-      20% {
-        transform: translateY(-20px);
-      }
-      40%,
-      100% {
-        transform: translateY(0px);
-      }
-    }
-  }
-  .return {
+.container {
+  all: unset;
+  .choose_page {
+    padding-top: 5rem;
+    width: 100%;
+    height: 375px;
     @include flexCenter;
-    margin-bottom: 3rem;
-    padding: 0.75rem;
-    font-size: 2rem;
-    border: 1px solid $green;
-    border-radius: 10px;
-    a {
-      all: unset;
+    flex-direction: column;
+    .span_area {
+      -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+      span {
+        font-size: 3rem;
+        font-weight: 700;
+        display: inline-block;
+        text-transform: uppercase;
+        animation: animate 1s ease-in-out infinite;
+        animation-delay: calc(0.1s * var(--i));
+      }
+      @keyframes animate {
+        0% {
+          transform: translateY(0px);
+        }
+        20% {
+          transform: translateY(-20px);
+        }
+        40%,
+        100% {
+          transform: translateY(0px);
+        }
+      }
     }
-    color: blue;
-    cursor: pointer;
-    &:hover {
-      background-color: $pink;
-      border: none;
+    .return {
+      @include flexCenter;
+      margin-bottom: 3rem;
+      padding: 0.75rem;
+      font-size: 2rem;
+      border: 1px solid $green;
+      border-radius: 10px;
       a {
-        color: white;
+        all: unset;
+      }
+      color: blue;
+      cursor: pointer;
+      &:hover {
+        background-color: $pink;
+        border: none;
+        a {
+          color: white;
+        }
       }
     }
   }
-}
-
-.table_first {
-  padding-top: 6rem;
-}
-
-.table {
-  display: flex;
-  align-items: center;
-  .circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: $green;
-  }
-  span {
-    margin-left: 0.5rem;
-    font-weight: 600;
-  }
-}
-
-.cards {
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
-  @include pad {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  @include web {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-.card {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
-  padding: 0.75rem;
-  height: 15rem;
-  justify-content: space-around;
-  position: relative;
-
-  &_favorite {
-    .add {
-      font-size: 0.85rem;
-    }
-    cursor: pointer;
-    position: absolute;
-    color: $pink;
-    bottom: 1rem;
-    right: 0.75rem;
-  }
-  &_img {
-    text-align: center;
-    img {
-      object-fit: cover;
-      aspect-ratio: 1 / 0.75;
+  .mainContain {
+    @include flexCenter;
+    flex-direction: column;
+    padding-top: 4rem;
+    .titleImage {
       width: 100%;
+      position: relative;
+      img {
+        width: 100%;
+        height: 65vh;
+        object-fit: cover;
+      }
+      span {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        color: white;
+        font-size: 3rem;
+        font-weight: 600;
+        transform: translate(-50%, 50%);
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+      }
     }
-  }
-  &_title {
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover {
-      color: $pink;
-    }
-  }
-  &_location {
-    display: flex;
-    align-items: flex-end;
-    .location {
-      color: $pink;
-      margin-right: 0.5rem;
-    }
-    span {
-      font-size: 12px;
-      color: $green;
-    }
-  }
-  &_detail {
-    color: black;
-    border: 1px solid $pink;
-    border-radius: 10px;
-    width: 45%;
-    text-align: center;
-    margin-top: 0.25rem;
-    padding: 0.15rem;
-    cursor: pointer;
-    &:hover {
-      background: $pink;
-      color: white;
-    }
-    button {
-      all: unset;
-      font-size: 14px;
+    .main {
+      width: 80%;
+      padding-top: 2rem;
+      .table {
+        display: flex;
+        align-items: center;
+        .circle {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: $green;
+        }
+        span {
+          margin-left: 0.5rem;
+          font-weight: 600;
+        }
+      }
+      .cards {
+        margin-top: 1rem;
+        padding-bottom: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        @include pad {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @include web {
+          grid-template-columns: repeat(5, 1fr);
+        }
+        .card {
+          background-color: rgb(255, 255, 255);
+          box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
+          padding: 0.75rem;
+          height: 15rem;
+          justify-content: space-around;
+          position: relative;
+
+          &_favorite {
+            .add {
+              font-size: 0.85rem;
+            }
+            cursor: pointer;
+            position: absolute;
+            color: $pink;
+            bottom: 1rem;
+            right: 0.75rem;
+          }
+          &_img {
+            text-align: center;
+            img {
+              object-fit: cover;
+              aspect-ratio: 1 / 0.75;
+              width: 100%;
+            }
+          }
+          &_title {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            &:hover {
+              color: $pink;
+            }
+          }
+          &_location {
+            display: flex;
+            align-items: flex-end;
+            .location {
+              color: $pink;
+              margin-right: 0.5rem;
+            }
+            span {
+              font-size: 12px;
+              color: $green;
+            }
+          }
+          &_detail {
+            color: black;
+            border: 1px solid $pink;
+            border-radius: 10px;
+            width: 6em;
+            text-align: center;
+            margin-top: 0.25rem;
+            padding: 0.15rem;
+            cursor: pointer;
+            &:hover {
+              background: $pink;
+              color: white;
+            }
+            button {
+              all: unset;
+              font-size: 14px;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -280,17 +280,12 @@
 <script>
 import BetterScroll from "better-scroll";
 export default {
-  data() {
-    return {
-      city: "taipei",
-    };
-  },
   mounted() {
     new BetterScroll(".cards_wrapper", {
-      mouseWheel: true, //开启鼠标滚轮
-      disableMouse: false, //启用鼠标拖动
-      disableTouch: true, //启用手指触摸
-      scrollX: true, //X轴滚动启用
+      mouseWheel: true, //開啟滑鼠滾動
+      disableMouse: false, //關閉滑鼠拖動
+      disableTouch: false, //關閉手指觸摸
+      scrollX: true, //X軸滾動開啟
     });
   },
 };
@@ -301,131 +296,128 @@ export default {
 
 .container {
   width: 100%;
-}
-.table {
-  .triangle {
-    &::after {
-      content: "";
-      border-style: solid;
-      border-width: 0 10px 20px 10px;
-      border-color: #f6f7f8 #f6f7f8 $pink #f6f7f8;
+  .table {
+    .triangle {
+      &::after {
+        content: "";
+        border-style: solid;
+        border-width: 0 10px 20px 10px;
+        border-color: #f6f7f8 #f6f7f8 $pink #f6f7f8;
+      }
+    }
+    span {
+      margin: 1.75rem;
+      font-weight: 600;
     }
   }
-  span {
-    margin: 1.75rem;
-    font-weight: 600;
-  }
-}
-
-.cards_wrapper {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: inline-flex;
-}
-
-.cards {
-  display: flex;
-}
-
-.card_area {
-  padding: 0.55rem;
-  margin-right: 0.75rem;
-  margin-top: 0.25rem;
-  background-color: white;
-  box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
-}
-.card {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  width: 140px;
-  height: 170px;
-  &_img {
+  .cards_wrapper {
     width: 100%;
     height: 100%;
-  }
-  &_text {
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-  }
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    // 線與邊框
-    top: 0.5rem;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    right: 0.5rem;
-    transition: transform 0.4s ease-out;
-  }
-  &::before {
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    transform: scale(0, 1);
-  }
-  &::after {
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-    transform: scale(1, 0);
-  }
-  &:hover::before {
-    transform: scale(1.05, 1);
-  }
-  &:hover::after {
-    transform: scale(1, 1.05);
-  }
-}
-.cardsm {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  width: 140px;
-  height: 74px;
-  &_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  &_text {
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-  }
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    // 線與邊框
-    top: 0.5rem;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    right: 0.5rem;
-    transition: transform 0.4s ease-out;
-  }
-  &::before {
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    transform: scale(0, 1);
-  }
-  &::after {
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-    transform: scale(1, 0);
-  }
-  &:hover::before {
-    transform: scale(1.05, 1);
-  }
-  &:hover::after {
-    transform: scale(1, 1.05);
+    overflow: hidden;
+    display: inline-flex;
+    .cards {
+      display: flex;
+      .card_area {
+        padding: 0.55rem;
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
+        background-color: white;
+        box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
+        .card {
+          position: relative;
+          cursor: pointer;
+          overflow: hidden;
+          width: 140px;
+          height: 170px;
+          &_img {
+            width: 100%;
+            height: 100%;
+          }
+          &_text {
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+          }
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            // 線與邊框
+            top: 0.5rem;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            right: 0.5rem;
+            transition: transform 0.4s ease-out;
+          }
+          &::before {
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            transform: scale(0, 1);
+          }
+          &::after {
+            border-right: 1px solid white;
+            border-left: 1px solid white;
+            transform: scale(1, 0);
+          }
+          &:hover::before {
+            transform: scale(1.05, 1);
+          }
+          &:hover::after {
+            transform: scale(1, 1.05);
+          }
+        }
+        .cardsm {
+          position: relative;
+          cursor: pointer;
+          overflow: hidden;
+          width: 140px;
+          height: 74px;
+          &_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          &_text {
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+          }
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            // 線與邊框
+            top: 0.5rem;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            right: 0.5rem;
+            transition: transform 0.4s ease-out;
+          }
+          &::before {
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            transform: scale(0, 1);
+          }
+          &::after {
+            border-right: 1px solid white;
+            border-left: 1px solid white;
+            transform: scale(1, 0);
+          }
+          &:hover::before {
+            transform: scale(1.05, 1);
+          }
+          &:hover::after {
+            transform: scale(1, 1.05);
+          }
+        }
+      }
+    }
   }
 }
 </style>

@@ -276,28 +276,28 @@ export default {
   },
   updated() {
     new BetterScroll(".hotel_wrapper", {
-      mouseWheel: true, //开启鼠标滚轮
-      disableMouse: false, //启用鼠标拖动
-      disableTouch: true, //启用手指触摸
-      scrollX: true, //X轴滚动启用
+      mouseWheel: true, //開啟滑鼠滾動
+      disableMouse: false, //關閉滑鼠拖動
+      disableTouch: false, //關閉手指觸摸
+      scrollX: true, //X軸滾動開啟
     });
     new BetterScroll(".card_wrapper", {
-      mouseWheel: true, //开启鼠标滚轮
-      disableMouse: false, //启用鼠标拖动
-      disableTouch: true, //启用手指触摸
-      scrollX: true, //X轴滚动启用
+      mouseWheel: true, //開啟滑鼠滾動
+      disableMouse: false, //關閉滑鼠拖動
+      disableTouch: false, //關閉手指觸摸
+      scrollX: true, //X軸滾動開啟
     });
     new BetterScroll(".res_wrapper", {
-      mouseWheel: true, //开启鼠标滚轮
-      disableMouse: false, //启用鼠标拖动
-      disableTouch: true, //启用手指触摸
-      scrollX: true, //X轴滚动启用
+      mouseWheel: true, //開啟滑鼠滾動
+      disableMouse: false, //關閉滑鼠拖動
+      disableTouch: false, //關閉手指觸摸
+      scrollX: true, //X軸滾動開啟
     });
     new BetterScroll(".activity_wrapper", {
-      mouseWheel: true, //开启鼠标滚轮
-      disableMouse: false, //启用鼠标拖动
-      disableTouch: true, //启用手指触摸
-      scrollX: true, //X轴滚动启用
+      mouseWheel: true, //開啟滑鼠滾動
+      disableMouse: false, //關閉滑鼠拖動
+      disableTouch: false, //關閉手指觸摸
+      scrollX: true, //X軸滾動開啟
     });
   },
   watch: {
@@ -705,295 +705,293 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/scss/All.scss";
 
-.table {
-  display: flex;
-  padding-top: 2rem;
-  .triangle {
-    &::after {
-      content: "";
-      border-style: solid;
-      border-width: 0 16px 30px 16px;
-      border-color: #f6f7f8 #f6f7f8 $pink #f6f7f8;
-    }
-    &_text {
-      padding-top: 1.25rem;
-    }
-  }
-  .square {
-    width: 30px;
-    height: 30px;
-    background-color: $yellow;
-  }
-  .circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: $green;
-  }
-  .umbrella {
-    font-size: 2rem;
-    color: $pink;
-    &_text {
-      padding-top: 0.75rem;
-    }
-  }
-  span {
-    margin-left: 1rem;
-    font-weight: 600;
-    font-size: 1.5rem;
-  }
-}
 .containrr {
   width: 100%;
   @include flexCenter;
   flex-direction: column;
-}
-.main {
-  width: 95%;
-  @include web {
+  .city_area {
     width: 80%;
   }
-}
-.city_area {
-  width: 80%;
-}
-.choose_page {
-  background-image: url("./../assets/選擇區域1.jpg");
-  width: 100%;
-  height: 375px;
-  @include flexCenter;
-  align-items: flex-start;
-  -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
-  .span_area {
+  .choose_page {
+    background-image: url("./../assets/選擇區域1.jpg");
+    width: 100%;
+    height: 375px;
+    @include flexCenter;
+    align-items: flex-start;
     -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
-    span {
-      padding-top: 3rem;
-      font-size: 3rem;
-      font-weight: 700;
-      display: inline-block;
-      text-transform: uppercase;
-      animation: animate 1s ease-in-out infinite;
-      animation-delay: calc(0.1s * var(--i));
-    }
-    @keyframes animate {
-      0% {
-        transform: translateY(0px);
+    .span_area {
+      -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+      span {
+        padding-top: 3rem;
+        font-size: 3rem;
+        font-weight: 700;
+        display: inline-block;
+        text-transform: uppercase;
+        animation: animate 1s ease-in-out infinite;
+        animation-delay: calc(0.1s * var(--i));
       }
-      20% {
-        transform: translateY(-20px);
-      }
-      40%,
-      100% {
-        transform: translateY(0px);
+      @keyframes animate {
+        0% {
+          transform: translateY(0px);
+        }
+        20% {
+          transform: translateY(-20px);
+        }
+        40%,
+        100% {
+          transform: translateY(0px);
+        }
       }
     }
   }
-}
-
-.cards_activity {
-  @include flexCenter;
-  flex-direction: column;
-  @include pad {
-    all: unset;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .cardAc {
-    all: unset;
-    display: flex;
-    background-color: white;
-    box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
+  .main {
     width: 95%;
-    margin: 0.75rem;
-    position: relative;
-    &_favorite {
-      position: absolute;
-      color: $pink;
-      top: 0.25rem;
-      right: 0.75rem;
-      cursor: pointer;
-      .remove {
-        font-size: 1.25rem;
-      }
-    }
-    &_title {
-      cursor: pointer;
-      &:hover {
-        color: $pink;
-      }
-    }
-    .info {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin: 0.5rem 0.5rem;
+    @include web {
       width: 80%;
-      .cardAc_detail {
-        padding: 5px;
-        display: none;
-        @include web {
-          padding: 0px;
-          display: block;
+    }
+    .table {
+      display: flex;
+      padding-top: 2rem;
+      .triangle {
+        &::after {
+          content: "";
+          border-style: solid;
+          border-width: 0 16px 30px 16px;
+          border-color: #f6f7f8 #f6f7f8 $pink #f6f7f8;
         }
         &_text {
-          font-size: 12px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 4;
-          -webkit-box-orient: vertical;
+          padding-top: 1.25rem;
+        }
+      }
+      .square {
+        width: 30px;
+        height: 30px;
+        background-color: $yellow;
+      }
+      .circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: $green;
+      }
+      .umbrella {
+        font-size: 2rem;
+        color: $pink;
+        &_text {
+          padding-top: 0.75rem;
+        }
+      }
+      span {
+        margin-left: 1rem;
+        font-weight: 600;
+        font-size: 1.5rem;
+      }
+    }
+    .cards_activity {
+      @include flexCenter;
+      flex-direction: column;
+      @include pad {
+        all: unset;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cardAc {
+        all: unset;
+        display: flex;
+        background-color: white;
+        box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
+        width: 95%;
+        margin: 0.75rem;
+        position: relative;
+        &_favorite {
+          position: absolute;
+          color: $pink;
+          top: 0.25rem;
+          right: 0.75rem;
+          cursor: pointer;
+          .remove {
+            font-size: 1.25rem;
+          }
+        }
+        &_title {
+          cursor: pointer;
+          &:hover {
+            color: $pink;
+          }
+        }
+        .info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          margin: 0.5rem 0.5rem;
+          width: 80%;
+          .cardAc_detail {
+            padding: 5px;
+            display: none;
+            @include web {
+              padding: 0px;
+              display: block;
+            }
+            &_text {
+              font-size: 12px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+            }
+          }
+        }
+        &_img {
+          width: 45%;
+          img {
+            margin: 0.75rem;
+            object-fit: cover;
+            aspect-ratio: 1 /1;
+            width: 80%;
+          }
+        }
+        &_location {
+          display: flex;
+          @include web {
+            width: 100%;
+            @include flexCenter;
+            justify-content: space-around;
+          }
+          &_info {
+            display: flex;
+            align-items: flex-end;
+          }
+          .location {
+            color: $pink;
+            display: flex;
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+          }
+          span {
+            font-size: 14px;
+          }
+        }
+        &_btn {
+          display: none;
+          @include web {
+            display: block;
+          }
+          button {
+            all: unset;
+            border: 1px solid $pink;
+            border-radius: 10px;
+            padding: 0.5rem 1.5rem;
+            margin: 0.25rem;
+            font-size: 14px;
+            cursor: pointer;
+            &:hover {
+              background: $pink;
+              color: white;
+            }
+          }
         }
       }
     }
-    &_img {
-      width: 45%;
-      img {
-        margin: 0.75rem;
-        object-fit: cover;
-        aspect-ratio: 1 /1;
-        width: 80%;
-      }
+
+    .cards {
+      padding-bottom: 1rem;
+      border: 1px red;
+      display: inline-flex;
     }
-    &_location {
-      display: flex;
-      @include web {
-        width: 100%;
-        @include flexCenter;
-        justify-content: space-around;
+
+    .card {
+      background-color: rgb(255, 255, 255);
+      box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
+      padding: 0.75rem;
+      margin-right: 0.75rem;
+      height: 15rem;
+      justify-content: space-around;
+      position: relative;
+      width: 200px;
+      height: 250px;
+
+      &_favorite {
+        .add {
+          font-size: 0.85rem;
+        }
+        cursor: pointer;
+        position: absolute;
+        color: $pink;
+        bottom: 1rem;
+        right: 0.75rem;
       }
-      &_info {
+      &_img {
+        text-align: center;
+        img {
+          object-fit: cover;
+          aspect-ratio: 1 / 0.75;
+          width: 100%;
+        }
+      }
+      &_title {
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover {
+          color: $pink;
+        }
+      }
+      &_location {
         display: flex;
         align-items: flex-end;
+        .location {
+          color: $pink;
+          margin-right: 0.5rem;
+        }
+        span {
+          font-size: 12px;
+          color: $green;
+        }
       }
-      .location {
-        color: $pink;
-        display: flex;
-        font-size: 1.25rem;
-        margin-right: 0.5rem;
-      }
-      span {
-        font-size: 14px;
-      }
-    }
-    &_btn {
-      display: none;
-      @include web {
-        display: block;
-      }
-      button {
-        all: unset;
+      &_detail {
+        color: black;
         border: 1px solid $pink;
         border-radius: 10px;
-        padding: 0.5rem 1.5rem;
-        margin: 0.25rem;
-        font-size: 14px;
+        width: 45%;
+        text-align: center;
+        margin-top: 0.25rem;
+        padding: 0.15rem;
         cursor: pointer;
         &:hover {
           background: $pink;
           color: white;
         }
+        button {
+          all: unset;
+          font-size: 14px;
+        }
       }
     }
-  }
-}
-
-// 拖拉區域
-.card_wrapper {
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
-  display: inline-flex;
-}
-.hotel_wrapper {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: inline-flex;
-}
-.res_wrapper {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  display: inline-flex;
-}
-.activity_wrapper {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-
-.cards {
-  padding-bottom: 1rem;
-  border: 1px red;
-  display: inline-flex;
-}
-
-.card {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
-  padding: 0.75rem;
-  margin-right: 0.75rem;
-  height: 15rem;
-  justify-content: space-around;
-  position: relative;
-  width: 200px;
-  height: 250px;
-
-  &_favorite {
-    .add {
-      font-size: 0.85rem;
-    }
-    cursor: pointer;
-    position: absolute;
-    color: $pink;
-    bottom: 1rem;
-    right: 0.75rem;
-  }
-  &_img {
-    text-align: center;
-    img {
-      object-fit: cover;
-      aspect-ratio: 1 / 0.75;
+    // 拖拉區域
+    .card_wrapper {
       width: 100%;
+      height: 260px;
+      overflow: hidden;
+      display: inline-flex;
     }
-  }
-  &_title {
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover {
-      color: $pink;
+    .hotel_wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: inline-flex;
     }
-  }
-  &_location {
-    display: flex;
-    align-items: flex-end;
-    .location {
-      color: $pink;
-      margin-right: 0.5rem;
+    .res_wrapper {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      display: inline-flex;
     }
-    span {
-      font-size: 12px;
-      color: $green;
-    }
-  }
-  &_detail {
-    color: black;
-    border: 1px solid $pink;
-    border-radius: 10px;
-    width: 45%;
-    text-align: center;
-    margin-top: 0.25rem;
-    padding: 0.15rem;
-    cursor: pointer;
-    &:hover {
-      background: $pink;
-      color: white;
-    }
-    button {
-      all: unset;
-      font-size: 14px;
+    .activity_wrapper {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
     }
   }
 }
