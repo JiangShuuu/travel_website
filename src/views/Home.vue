@@ -10,16 +10,19 @@
       <Selector @after-selector-city="afterSelectorCity" />
       <HotCity />
       <HotActivity
+        v-if="activityData.length > 0"
         :initial-activity="activityData"
         :initial-city="city"
         @activity-detail="getDetail"
       />
       <HotView
+        v-if="viewData.length > 0"
         :initial-viewdata="viewData"
         :initial-location="location"
         @view-detail="getDetail"
       />
       <ViewPagination
+        v-if="view.totalPage.length > 1"
         :totalPage="view.totalPage"
         :initialCurrentPage="view.currentPage"
         @change-page="changePage"
@@ -55,6 +58,9 @@ export default {
       area: "三芝區",
       viewData: [],
       activityData: [],
+      favoriteActivity:
+        JSON.parse(localStorage.getItem("favoriteActivity")) || [],
+      favoriteView: JSON.parse(localStorage.getItem("favoriteView")) || [],
       location: "NewTaipei三芝區",
       // 分頁Data
       RenderPage: 10,
@@ -99,9 +105,8 @@ export default {
       this.isDetail = true;
     },
 
-    async getCityActivity(city, month) {
-      try {
-        const res = await getApi.getCityActivity(city, month);
+    getCityActivity(city, month) {
+      getApi.getCityActivity(city, month).then((res) => {
         let result = res.data;
 
         const startIndex = (1 - 1) * 4;
@@ -111,27 +116,19 @@ export default {
           isFavorite: false,
         }));
         // 過濾favorite重複清單
-        const saveActivity =
-          JSON.parse(localStorage.getItem("favoriteActivity")) || [];
-        if (saveActivity.length) {
-          this.activityData.map((item1) => {
-            return Object.assign(
-              item1,
-              saveActivity.find((item2) => {
-                return (
-                  item2.ActivityID && item1.ActivityID === item2.ActivityID
-                );
-              })
-            );
-          });
-        }
-      } catch (error) {
-        console.log("無法取得活動資料，請稍後再試!");
-      }
+
+        this.activityData.map((item1) => {
+          return Object.assign(
+            item1,
+            this.favoriteActivity.find((item2) => {
+              return item2.ActivityID && item1.ActivityID === item2.ActivityID;
+            })
+          );
+        });
+      });
     },
-    async getCityScenicSpot(city, area, page) {
-      try {
-        const res = await getApi.getCityScenicSpot(city, area);
+    getCityScenicSpot(city, area, page) {
+      getApi.getCityScenicSpot(city, area).then((res) => {
         // 總Data
         let result = res.data;
 
@@ -153,12 +150,12 @@ export default {
         }));
 
         // 過濾favorite重複清單
-        const saveView = JSON.parse(localStorage.getItem("favoriteView"));
+        // const saveView = JSON.parse(localStorage.getItem("favoriteView"));
 
         this.viewData.map((item1) => {
           return Object.assign(
             item1,
-            saveView.find((item2) => {
+            this.favoriteView.find((item2) => {
               return (
                 item2.ScenicSpotID && item1.ScenicSpotID === item2.ScenicSpotID
               );
@@ -179,9 +176,7 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
-      } catch (error) {
-        console.log("無法取得景點資料，請稍後再試!");
-      }
+      });
     },
     afterSelectorCity(payload) {
       const { city, area } = payload;

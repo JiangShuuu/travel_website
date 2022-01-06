@@ -8,7 +8,7 @@
     />
     <div class="main">
       <Selector @after-selector-city="afterSelectorCity" />
-      <div class="main_area1">
+      <div class="main_area1" v-if="restaurantData.length > 0">
         <div class="title">
           <div class="title_square"></div>
           <span class="title_text">熱門美食</span>
@@ -34,7 +34,7 @@
           @next-page="nextPage"
         />
       </div>
-      <div class="main_area2">
+      <div class="main_area2" v-if="hotelData.length > 0">
         <div class="title">
           <div class="title_square"></div>
           <span class="title_text">推薦住宿</span>
@@ -154,9 +154,8 @@ export default {
       this.isDetail = false;
       this.detailData = [];
     },
-    async getCityHotel(city, area, page) {
-      try {
-        const res = await getApi.getCityHotel(city, area);
+    getCityHotel(city, area, page) {
+      getApi.getCityHotel(city, area).then((res) => {
         // 總Data
         let result = res.data;
 
@@ -171,12 +170,11 @@ export default {
         }));
 
         // 篩選喜歡清單
-        const saveHotel = JSON.parse(localStorage.getItem("favoriteHotel"));
-
+        // const saveHotel = JSON.parse(localStorage.getItem("favoriteHotel"));
         this.hotelData.map((item1) => {
           return Object.assign(
             item1,
-            saveHotel.find((item2) => {
+            this.favoriteHotel.find((item2) => {
               return item2.HotelID && item1.HotelID === item2.HotelID;
             })
           );
@@ -195,15 +193,13 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
-      } catch (error) {
-        console.log("無法取得飯店資料，請稍後再試!");
-      }
+      });
     },
-    async getCityRestaurant(city, area, page) {
-      try {
-        const res = await getApi.getCityRestaurant(city, area);
+    getCityRestaurant(city, area, page) {
+      getApi.getCityRestaurant(city, area).then((res) => {
         // 總Data
         let result = res.data;
+
         // 按區域篩選Data
         let data = result.filter((item) => item.Address.includes(area));
 
@@ -216,13 +212,14 @@ export default {
         }));
 
         // 篩選喜歡清單
-        const saveRestaurant = JSON.parse(
-          localStorage.getItem("favoriteRestaurant")
-        );
+        // const saveRestaurant = JSON.parse(
+        //   localStorage.getItem("favoriteRestaurant")
+        // );
+        // console.log(saveRestaurant.length);
         this.restaurantData.map((item1) => {
           return Object.assign(
             item1,
-            saveRestaurant.find((item2) => {
+            this.favoriteRestaurant.find((item2) => {
               return (
                 item2.RestaurantID && item1.RestaurantID === item2.RestaurantID
               );
@@ -243,9 +240,8 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
-      } catch (error) {
-        console.log("無法取得餐廳資料，請稍後再試!");
-      }
+        console.log(this.restaurant.totalPage);
+      });
     },
 
     afterSelectorCity(payload) {
