@@ -1,6 +1,7 @@
 <template>
   <div class="checkout">
     <div class="container">
+      <div class="background" @click.stop.prevent="closeModal()"></div>
       <div class="cards">
         <div class="cancel" @click.stop.prevent="closeModal()">
           <div class="cancel_btn">
@@ -11,14 +12,14 @@
           <div class="card_img">
             <img :src="detail.Picture.PictureUrl1 | emptyImage" alt="" />
           </div>
-          <div class="card_btn">
+          <!-- <div class="card_btn">
             <div class="prev">
               <i class="fas fa-caret-left"></i>
             </div>
             <div class="next active">
               <i class="fas fa-caret-right"></i>
             </div>
-          </div>
+          </div> -->
           <div class="card_name">
             <span>{{
               detail.ScenicSpotName
@@ -109,17 +110,17 @@ export default {
 
 .checkout {
   width: 100%;
+  height: 100vh;
   @include flexCenter;
-  position: sticky;
-  background-color: rgba(235, 235, 235, 0.5);
   top: 5rem;
-  z-index: 9999;
+  position: sticky;
+
   .container {
     @include flexCenter;
     width: 80%;
     flex-direction: column;
     @include pad {
-      width: 40%;
+      width: 50%;
     }
     @include web {
       width: 40%;
@@ -128,9 +129,6 @@ export default {
       position: absolute;
       top: 0;
       right: -2.5rem;
-      // @include flexCenter;
-      // justify-content: flex-end;
-      // margin-top: 1rem;
       &_btn {
         width: 32px;
         height: 32px;
@@ -142,56 +140,67 @@ export default {
       }
       cursor: pointer;
     }
+    .background {
+      position: absolute;
+      background-color: rgba(235, 235, 235, 0.5);
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
     .cards {
+      z-index: 2;
       box-shadow: 4px 4px 10px 4px rgba(13, 11, 12, 0.2);
       background: white;
+      margin-top: 5rem;
       @include flexCenter;
       margin: 0.5rem;
       position: relative;
       .card {
-        border: 1px solid;
         width: 90%;
         margin: 0.75rem;
+        padding: 0.75rem;
         &_img {
           text-align: center;
           margin-top: 1rem;
+          width: 100%;
           img {
-            width: 80%;
-            height: 80%;
+            width: 100%;
+            height: 20rem;
             object-fit: cover;
+            // overflow: hidden;
             // aspect-ratio: 1 / 0.7;
           }
         }
-        &_btn {
-          @include flexCenter;
-          justify-content: flex-end;
-          margin: 0.75rem 0;
-          .next {
-            width: 30px;
-            height: 30px;
-            border-radius: 5px;
-            box-shadow: 0px 2px 4px rgba(13, 11, 12, 0.2);
-            @include flexCenter;
-            margin-left: 0.75rem;
-            &:active {
-              background: black;
-              color: white;
-            }
-            cursor: pointer;
-          }
-          .prev {
-            width: 30px;
-            height: 30px;
-            border-radius: 5px;
-            box-shadow: 0px 2px 4px rgba(13, 11, 12, 0.2);
-            @include flexCenter;
-            &:active {
-              background: black;
-              color: white;
-            }
-            cursor: pointer;
-          }
-        }
+        // &_btn {
+        //   @include flexCenter;
+        //   justify-content: flex-end;
+        //   margin: 0.75rem 0;
+        //   .next {
+        //     width: 30px;
+        //     height: 30px;
+        //     border-radius: 5px;
+        //     box-shadow: 0px 2px 4px rgba(13, 11, 12, 0.2);
+        //     @include flexCenter;
+        //     margin-left: 0.75rem;
+        //     &:active {
+        //       background: black;
+        //       color: white;
+        //     }
+        //     cursor: pointer;
+        //   }
+        //   .prev {
+        //     width: 30px;
+        //     height: 30px;
+        //     border-radius: 5px;
+        //     box-shadow: 0px 2px 4px rgba(13, 11, 12, 0.2);
+        //     @include flexCenter;
+        //     &:active {
+        //       background: black;
+        //       color: white;
+        //     }
+        //     cursor: pointer;
+        //   }
+        // }
         &_name {
           font-size: 18px;
           font-weight: 600;
@@ -200,6 +209,27 @@ export default {
         &_info {
           font-size: 14px;
           padding-bottom: 0.75rem;
+          width: 100%;
+          height: 8rem;
+          overflow: scroll;
+          &::-webkit-scrollbar-track-piece {
+            //滾動條凹槽的顏色，還可以設定邊框屬性
+            background-color: #f8f8f8;
+          }
+          &::-webkit-scrollbar {
+            //滾動條的寬度
+            width: 9px;
+            height: 9px;
+          }
+          &::-webkit-scrollbar-thumb {
+            //滾動條的設定
+            background-color: #dddddd;
+            background-clip: padding-box;
+            min-height: 28px;
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: #bbb;
+          }
         }
         &_icons {
           @include pad {
@@ -229,21 +259,5 @@ export default {
       }
     }
   }
-  // .modal {
-  //   z-index: 999;
-  //   border: white solid 3px;
-  //   width: 30%;
-  //   background-color: #2a2a2a;
-  //   margin: auto;
-  //   color: white;
-  //   border-radius: 20px;
-  //   padding: 10px;
-  //   .cancel {
-  //     cursor: pointer;
-  //   }
-  //   .checkOutInfo {
-  //     margin: 10px 0;
-  //   }
-  // }
 }
 </style>

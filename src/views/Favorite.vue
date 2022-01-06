@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <CheckOutInfo
+      class="checkOut"
       v-if="isDetail"
       :initial-detail="detailData"
       @close-detail="closeDetail"
@@ -48,6 +49,7 @@
               class="card"
               v-for="activity in activityData"
               :key="activity.ActivityID"
+              @click.stop.prevent="getDetail(activity.ActivityID)"
             >
               <div class="card_img">
                 <img :src="activity.Picture.PictureUrl1" alt="" />
@@ -82,7 +84,10 @@
               <div class="card_img">
                 <img :src="view.Picture.PictureUrl1" alt="" />
               </div>
-              <div class="card_title">
+              <div
+                class="card_title"
+                @click.stop.prevent="getDetail(view.ScenicSpotID)"
+              >
                 <span>{{ view.ScenicSpotName }}</span>
               </div>
               <div
@@ -116,7 +121,10 @@
               <div class="card_img">
                 <img :src="restaurant.Picture.PictureUrl1" alt="" />
               </div>
-              <div class="card_title">
+              <div
+                class="card_title"
+                @click.stop.prevent="getDetail(restaurant.RestaurantID)"
+              >
                 <span>{{ restaurant.RestaurantName }}</span>
               </div>
               <div
@@ -148,7 +156,10 @@
               <div class="card_img">
                 <img :src="hotel.Picture.PictureUrl1" alt="" />
               </div>
-              <div class="card_title">
+              <div
+                class="card_title"
+                @click.stop.prevent="getDetail(hotel.HotelID)"
+              >
                 <span>{{ hotel.HotelName }}</span>
               </div>
               <div
@@ -306,6 +317,9 @@ export default {
 
 .container {
   all: unset;
+  .checkOut {
+    z-index: 2;
+  }
   .choose_page {
     padding-top: 5rem;
     width: 100%;

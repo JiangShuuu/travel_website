@@ -55,55 +55,55 @@ export default {
       },
     });
   },
-  getRestaurant(city, id) {
-    return apiClient.get(`/Restaurant/${city}`, {
-      params: {
-        $filter: `ID eq '${id}'`,
-        $format: "JSON",
-      },
-    });
-  },
-  getHotel(city, id) {
-    return apiClient.get(`/Hotel/${city}`, {
-      params: {
-        $filter: `ID eq '${id}'`,
-        $format: "JSON",
-      },
-    });
-  },
-  getNearSites(lat, lon, distance) {
-    return apiClient.get(
-      "/ScenicSpot?$top=10&$spatialFilter=nearby(" +
-        lat +
-        "%2C%20" +
-        lon +
-        "%2C%20" +
-        distance +
-        ")&$format=JSON"
-    );
-  },
-  getNearRestaurant(lat, lon, distance) {
-    return apiClient.get(
-      "/Restaurant?$top=10&$spatialFilter=nearby(" +
-        lat +
-        "%2C%20" +
-        lon +
-        "%2C%20" +
-        distance +
-        ")&$format=JSON"
-    );
-  },
-  getNearHotel(lat, lon, distance) {
-    return apiClient.get(
-      "/Hotel?$top=10&$spatialFilter=nearby(" +
-        lat +
-        "%2C%20" +
-        lon +
-        "%2C%20" +
-        distance +
-        ")&$format=JSON"
-    );
-  },
+  // getRestaurant(city, id) {
+  //   return apiClient.get(`/Restaurant/${city}`, {
+  //     params: {
+  //       $filter: `ID eq '${id}'`,
+  //       $format: "JSON",
+  //     },
+  //   });
+  // },
+  // getHotel(city, id) {
+  //   return apiClient.get(`/Hotel/${city}`, {
+  //     params: {
+  //       $filter: `ID eq '${id}'`,
+  //       $format: "JSON",
+  //     },
+  //   });
+  // },
+  // getNearSites(lat, lon, distance) {
+  //   return apiClient.get(
+  //     "/ScenicSpot?$top=10&$spatialFilter=nearby(" +
+  //       lat +
+  //       "%2C%20" +
+  //       lon +
+  //       "%2C%20" +
+  //       distance +
+  //       ")&$format=JSON"
+  //   );
+  // },
+  // getNearRestaurant(lat, lon, distance) {
+  //   return apiClient.get(
+  //     "/Restaurant?$top=10&$spatialFilter=nearby(" +
+  //       lat +
+  //       "%2C%20" +
+  //       lon +
+  //       "%2C%20" +
+  //       distance +
+  //       ")&$format=JSON"
+  //   );
+  // },
+  // getNearHotel(lat, lon, distance) {
+  //   return apiClient.get(
+  //     "/Hotel?$top=10&$spatialFilter=nearby(" +
+  //       lat +
+  //       "%2C%20" +
+  //       lon +
+  //       "%2C%20" +
+  //       distance +
+  //       ")&$format=JSON"
+  //   );
+  // },
 };
 
 function getAuthorizationHeader() {

@@ -280,13 +280,19 @@
 <script>
 import BetterScroll from "better-scroll";
 export default {
-  mounted() {
+  beforeUpdate() {
     new BetterScroll(".cards_wrapper", {
       mouseWheel: true, //開啟滑鼠滾動
       disableMouse: false, //關閉滑鼠拖動
       disableTouch: false, //關閉手指觸摸
       scrollX: true, //X軸滾動開啟
+      click: true,
     });
+    // const options = {
+    //   tap: true,
+    //   mouseWheel: true,
+    // };
+    // this.scroll = new BetterScroll(this.$refs.wrapper, options);
   },
 };
 </script>

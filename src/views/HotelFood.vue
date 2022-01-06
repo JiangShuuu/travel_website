@@ -1,6 +1,7 @@
 <template>
   <div class="containor">
     <CheckOutInfo
+      class="checkOut"
       v-if="isDetail"
       :initial-detail="detailData"
       @close-detail="closeDetail"
@@ -363,6 +364,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../assets/scss/All.scss";
+.checkOut {
+  z-index: 999;
+}
 .main {
   @include flexCenter;
   flex-direction: column;

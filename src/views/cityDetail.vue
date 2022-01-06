@@ -1,6 +1,7 @@
 <template>
   <div class="containrr">
     <CheckOutInfo
+      class="checkOut"
       v-if="isDetail"
       :initial-detail="detailData"
       @close-detail="closeDetail"
@@ -20,9 +21,8 @@
         <span style="--i: 8">.</span>
       </div>
     </div>
-
-    <div class="main" v-else>
-      <div class="activity" v-if="activityData.length > 0">
+    <div class="main">
+      <div class="activity" v-show="activityData.length > 0">
         <div class="table">
           <div class="triangle"></div>
           <span class="triangle_text">活動清單</span>
@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-      <div class="view" v-if="viewData.length > 0">
+      <div class="view" v-show="viewData.length > 0">
         <div class="table">
           <div class="square"></div>
           <span>景點清單</span>
@@ -129,7 +129,7 @@
           </div>
         </div>
       </div>
-      <div class="restaurant" v-if="restaurantData.length > 0">
+      <div class="restaurant" v-show="restaurantData.length > 0">
         <div class="table">
           <div class="circle"></div>
           <span>餐廳清單</span>
@@ -181,7 +181,7 @@
           </div>
         </div>
       </div>
-      <div class="hotel" v-if="hotelData.length > 0">
+      <div class="hotel" v-show="hotelData.length > 0">
         <div class="table">
           <div class="umbrella"><i class="fas fa-umbrella"></i></div>
           <span class="umbrella_text">住宿清單</span>
@@ -259,7 +259,7 @@ export default {
       viewData: [],
       favoriteView: JSON.parse(localStorage.getItem("favoriteView")) || [],
 
-      // Detail 待確認
+      // Detail
       isDetail: false,
       detailData: [],
     };
@@ -272,33 +272,6 @@ export default {
     const { city } = this.$route.params;
     this.cityName = city;
     this.getCityList(city);
-    this.getCityActivity(city, 12);
-  },
-  updated() {
-    new BetterScroll(".hotel_wrapper", {
-      mouseWheel: true, //開啟滑鼠滾動
-      disableMouse: false, //關閉滑鼠拖動
-      disableTouch: false, //關閉手指觸摸
-      scrollX: true, //X軸滾動開啟
-    });
-    new BetterScroll(".card_wrapper", {
-      mouseWheel: true, //開啟滑鼠滾動
-      disableMouse: false, //關閉滑鼠拖動
-      disableTouch: false, //關閉手指觸摸
-      scrollX: true, //X軸滾動開啟
-    });
-    new BetterScroll(".res_wrapper", {
-      mouseWheel: true, //開啟滑鼠滾動
-      disableMouse: false, //關閉滑鼠拖動
-      disableTouch: false, //關閉手指觸摸
-      scrollX: true, //X軸滾動開啟
-    });
-    new BetterScroll(".activity_wrapper", {
-      mouseWheel: true, //開啟滑鼠滾動
-      disableMouse: false, //關閉滑鼠拖動
-      disableTouch: false, //關閉手指觸摸
-      scrollX: true, //X軸滾動開啟
-    });
   },
   watch: {
     areaName: function () {
@@ -308,7 +281,41 @@ export default {
       this.getCityActivity(this.cityName, 12);
     },
   },
+  beforeUpdate() {
+    this.moviefunction();
+  },
+
   methods: {
+    moviefunction() {
+      new BetterScroll(".hotel_wrapper", {
+        mouseWheel: true, //開啟滑鼠滾動
+        disableMouse: false, //關閉滑鼠拖動
+        disableTouch: false, //關閉手指觸摸
+        scrollX: true, //X軸滾動開啟
+        click: true,
+      });
+      new BetterScroll(".card_wrapper", {
+        mouseWheel: true, //開啟滑鼠滾動
+        disableMouse: false, //關閉滑鼠拖動
+        disableTouch: false, //關閉手指觸摸
+        scrollX: true, //X軸滾動開啟
+        click: true,
+      });
+      new BetterScroll(".res_wrapper", {
+        mouseWheel: true, //開啟滑鼠滾動
+        disableMouse: false, //關閉滑鼠拖動
+        disableTouch: false, //關閉手指觸摸
+        scrollX: true, //X軸滾動開啟
+        click: true,
+      });
+      new BetterScroll(".activity_wrapper", {
+        mouseWheel: true, //開啟滑鼠滾動
+        disableMouse: false, //關閉滑鼠拖動
+        disableTouch: false, //關閉手指觸摸
+        scrollX: true, //X軸滾動開啟
+        click: true,
+      });
+    },
     // Get city&area
     async getCityList(city) {
       try {
@@ -360,8 +367,6 @@ export default {
         const res = await getApi.getCityActivity(city, month);
         let result = res.data;
 
-        // const startIndex = (1 - 1) * 4;
-        // let renderData = result.slice(startIndex, startIndex + 4);
         this.activityData = result.map((data) => ({
           ...data,
           isFavorite: false,
@@ -424,9 +429,6 @@ export default {
         let result = res.data;
         // 按區域篩選Data
         let data = result.filter((item) => item.Address.includes(area));
-        // 按頁數篩選renderData
-        // const startIndex = (page - 1) * this.RenderPage;
-        // let renderData = data.slice(startIndex, startIndex + this.RenderPage);
         this.hotelData = data.map((data) => ({
           ...data,
           isFavorite: false,
@@ -442,20 +444,6 @@ export default {
             })
           );
         });
-
-        // // 總頁數
-        // const numberOfPage = Math.ceil(data.length / this.RenderPage);
-        // for (let i = 1; i <= numberOfPage; i++) {
-        //   this.hotel.totalPage.push(i);
-        // }
-        // // 篩掉重複頁數
-        // this.hotel.totalPage = this.hotel.totalPage.filter(function (
-        //   element,
-        //   index,
-        //   arr
-        // ) {
-        //   return arr.indexOf(element) === index;
-        // });
       } catch (error) {
         console.log("無法取得飯店資料，請稍後再試!");
       }
@@ -508,9 +496,6 @@ export default {
             data.push(item);
           }
         });
-        // 按頁數篩選Data
-        // const startIndex = (page - 1) * this.RenderPage;
-        // let renderData = data.slice(startIndex, startIndex + this.RenderPage);
         this.viewData = data.map((data) => ({
           ...data,
           isFavorite: false,
@@ -529,20 +514,6 @@ export default {
             })
           );
         });
-
-        // // 總頁數
-        // const numberOfPage = Math.ceil(data.length / this.RenderPage);
-        // for (let i = 1; i <= numberOfPage; i++) {
-        //   this.view.totalPage.push(i);
-        // }
-        // // 篩掉重複頁數
-        // this.view.totalPage = this.view.totalPage.filter(function (
-        //   element,
-        //   index,
-        //   arr
-        // ) {
-        //   return arr.indexOf(element) === index;
-        // });
       } catch (error) {
         console.log("無法取得景點資料，請稍後再試!");
       }
@@ -592,7 +563,6 @@ export default {
           ...data,
           isFavorite: false,
         }));
-        console.log(this.restaurantData);
 
         // 篩選喜歡清單
         const saveRestaurant = JSON.parse(
@@ -608,20 +578,6 @@ export default {
             })
           );
         });
-
-        // // 總頁數
-        // const numberOfPage = Math.ceil(data.length / this.RenderPage);
-        // for (let i = 1; i <= numberOfPage; i++) {
-        //   this.restaurant.totalPage.push(i);
-        // }
-        // // 篩掉重複頁數
-        // this.restaurant.totalPage = this.restaurant.totalPage.filter(function (
-        //   element,
-        //   index,
-        //   arr
-        // ) {
-        //   return arr.indexOf(element) === index;
-        // });
       } catch (error) {
         console.log("無法取得餐廳資料，請稍後再試!");
       }
@@ -709,6 +665,9 @@ export default {
   width: 100%;
   @include flexCenter;
   flex-direction: column;
+  .checkOut {
+    z-index: 999;
+  }
   .city_area {
     width: 80%;
   }
