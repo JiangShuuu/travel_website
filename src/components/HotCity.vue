@@ -280,7 +280,7 @@
 <script>
 import BetterScroll from "better-scroll";
 export default {
-  beforeUpdate() {
+  mounted() {
     new BetterScroll(".cards_wrapper", {
       mouseWheel: true, //開啟滑鼠滾動
       disableMouse: false, //關閉滑鼠拖動

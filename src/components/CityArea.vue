@@ -40,7 +40,7 @@ export default {
     new BetterScroll(".area_wrapper", {
       mouseWheel: true, //开启鼠标滚轮
       disableMouse: false, //启用鼠标拖动
-      disableTouch: true, //启用手指触摸
+      disableTouch: false, //启用手指触摸
       scrollX: true, //X轴滚动启用
     });
   },
