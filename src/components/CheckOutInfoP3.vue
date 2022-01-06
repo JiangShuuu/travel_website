@@ -164,8 +164,7 @@ export default {
           margin-top: 1rem;
           width: 100%;
           img {
-            width: 100%;
-            height: 20rem;
+            width: 80%;
             object-fit: cover;
             // overflow: hidden;
             // aspect-ratio: 1 / 0.7;
