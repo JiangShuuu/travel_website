@@ -1,5 +1,6 @@
 # travel_website
 Demo：https://jiangshuuu.github.io/travel_website/
+![alt text](https://github.com/JiangShuuu/travel_website/blob/main/public/Demo.png)
 
 ## 介紹
 由六角學院舉辦的The F2E 活動，根據UI設計師的Figma設計稿，執行切版、串接交通部API。
@@ -10,11 +11,6 @@ Demo：https://jiangshuuu.github.io/travel_website/
 2. 選取指定縣市內地區資料
 3. 名單儲存功能
 4. 換頁功能
-
-## Project setup
-```
-npm install
-```
 
 ## 開始使用
 1. 需安裝 node.js 與 npm
