@@ -280,9 +280,11 @@ export default {
       this.getCityHotel(this.cityName, this.areaName, 1);
       this.getCityActivity(this.cityName, 12);
     },
-  },
-  beforeUpdate() {
-    this.moviefunction();
+    hotelData: function () {
+      setTimeout(() => {
+        this.moviefunction();
+      }, 500);
+    },
   },
 
   methods: {
@@ -373,20 +375,14 @@ export default {
         }));
 
         // 篩選喜歡清單
-        const saveActivity =
-          JSON.parse(localStorage.getItem("favoriteActivity")) || [];
-        if (saveActivity.length) {
-          this.activityData.map((item1) => {
-            return Object.assign(
-              item1,
-              saveActivity.find((item2) => {
-                return (
-                  item2.ActivityID && item1.ActivityID === item2.ActivityID
-                );
-              })
-            );
-          });
-        }
+        this.activityData.map((item1) => {
+          return Object.assign(
+            item1,
+            this.favoriteActivity.find((item2) => {
+              return item2.ActivityID && item1.ActivityID === item2.ActivityID;
+            })
+          );
+        });
       } catch (error) {
         console.log("無法取得活動資料，請稍後再試!");
       }
@@ -435,11 +431,10 @@ export default {
         }));
 
         // 篩選喜歡清單
-        const saveHotel = JSON.parse(localStorage.getItem("favoriteHotel"));
         this.hotelData.map((item1) => {
           return Object.assign(
             item1,
-            saveHotel.find((item2) => {
+            this.favoriteHotel.find((item2) => {
               return item2.HotelID && item1.HotelID === item2.HotelID;
             })
           );
@@ -502,12 +497,10 @@ export default {
         }));
 
         // 篩選喜歡清單
-        const saveView = JSON.parse(localStorage.getItem("favoriteView"));
-
         this.viewData.map((item1) => {
           return Object.assign(
             item1,
-            saveView.find((item2) => {
+            this.favoriteView.find((item2) => {
               return (
                 item2.ScenicSpotID && item1.ScenicSpotID === item2.ScenicSpotID
               );
@@ -565,13 +558,10 @@ export default {
         }));
 
         // 篩選喜歡清單
-        const saveRestaurant = JSON.parse(
-          localStorage.getItem("favoriteRestaurant")
-        );
         this.restaurantData.map((item1) => {
           return Object.assign(
             item1,
-            saveRestaurant.find((item2) => {
+            this.favoriteRestaurant.find((item2) => {
               return (
                 item2.RestaurantID && item1.RestaurantID === item2.RestaurantID
               );
@@ -660,7 +650,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../assets/scss/All.scss";
-
 .containrr {
   width: 100%;
   @include flexCenter;
@@ -853,13 +842,11 @@ export default {
         }
       }
     }
-
     .cards {
       padding-bottom: 1rem;
       border: 1px red;
       display: inline-flex;
     }
-
     .card {
       background-color: rgb(255, 255, 255);
       box-shadow: 4px 2px 4px rgba(13, 11, 12, 0.2);
@@ -870,7 +857,6 @@ export default {
       position: relative;
       width: 200px;
       height: 250px;
-
       &_favorite {
         .add {
           font-size: 0.85rem;

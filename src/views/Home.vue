@@ -105,8 +105,9 @@ export default {
       this.isDetail = true;
     },
 
-    getCityActivity(city, month) {
-      getApi.getCityActivity(city, month).then((res) => {
+    async getCityActivity(city, month) {
+      try {
+        const res = await getApi.getCityActivity(city, month);
         let result = res.data;
 
         const startIndex = (1 - 1) * 4;
@@ -125,10 +126,13 @@ export default {
             })
           );
         });
-      });
+      } catch (error) {
+        console.log(error, "無法取得");
+      }
     },
-    getCityScenicSpot(city, area, page) {
-      getApi.getCityScenicSpot(city, area).then((res) => {
+    async getCityScenicSpot(city, area, page) {
+      try {
+        const res = await getApi.getCityScenicSpot(city, area);
         // 總Data
         let result = res.data;
 
@@ -176,7 +180,9 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
-      });
+      } catch (error) {
+        console.log("無法取得景點資料，請稍後再試!");
+      }
     },
     afterSelectorCity(payload) {
       const { city, area } = payload;

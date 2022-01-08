@@ -154,8 +154,9 @@ export default {
       this.isDetail = false;
       this.detailData = [];
     },
-    getCityHotel(city, area, page) {
-      getApi.getCityHotel(city, area).then((res) => {
+    async getCityHotel(city, area, page) {
+      try {
+        const res = await getApi.getCityHotel(city, area);
         // 總Data
         let result = res.data;
 
@@ -193,10 +194,13 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
-      });
+      } catch (error) {
+        console.log("無法取得飯店資料，請稍後再試!");
+      }
     },
-    getCityRestaurant(city, area, page) {
-      getApi.getCityRestaurant(city, area).then((res) => {
+    async getCityRestaurant(city, area, page) {
+      try {
+        const res = await getApi.getCityRestaurant(city, area);
         // 總Data
         let result = res.data;
 
@@ -240,8 +244,9 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
-        console.log(this.restaurant.totalPage);
-      });
+      } catch (error) {
+        console.log("無法取得餐廳資料，請稍後再試!");
+      }
     },
 
     afterSelectorCity(payload) {

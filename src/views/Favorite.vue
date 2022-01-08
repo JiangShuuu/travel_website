@@ -52,7 +52,7 @@
               @click.stop.prevent="getDetail(activity.ActivityID)"
             >
               <div class="card_img">
-                <img :src="activity.Picture.PictureUrl1" alt="" />
+                <img :src="activity.Picture.PictureUrl1 | emptyImage" alt="" />
               </div>
               <div class="card_title">
                 <span>{{ activity.ActivityName }}</span>
@@ -82,7 +82,7 @@
           <div class="cards">
             <div class="card" v-for="view in viewData" :key="view.ScenicSpotID">
               <div class="card_img">
-                <img :src="view.Picture.PictureUrl1" alt="" />
+                <img :src="view.Picture.PictureUrl1 | emptyImage" alt="" />
               </div>
               <div
                 class="card_title"
@@ -119,7 +119,10 @@
               :key="restaurant.RestaurantID"
             >
               <div class="card_img">
-                <img :src="restaurant.Picture.PictureUrl1" alt="" />
+                <img
+                  :src="restaurant.Picture.PictureUrl1 | emptyImage"
+                  alt=""
+                />
               </div>
               <div
                 class="card_title"
@@ -154,7 +157,7 @@
           <div class="cards">
             <div class="card" v-for="hotel in hotelData" :key="hotel.HotelID">
               <div class="card_img">
-                <img :src="hotel.Picture.PictureUrl1" alt="" />
+                <img :src="hotel.Picture.PictureUrl1 | emptyImage" alt="" />
               </div>
               <div
                 class="card_title"
@@ -186,8 +189,11 @@
 
 <script>
 import CheckOutInfo from "./../components/CheckOutInfoP3.vue";
+import { emptyImageFilter } from "./../utils/mixins";
+
 export default {
   name: "FavoriteList",
+  mixins: [emptyImageFilter],
   data() {
     return {
       activityData: JSON.parse(localStorage.getItem("favoriteActivity")) || [],

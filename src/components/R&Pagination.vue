@@ -63,9 +63,6 @@ export default {
       console.log(this.currentPage);
     },
   },
-  created() {
-    console.log(this.totalPage);
-  },
 
   methods: {
     changePage(page) {
