@@ -4,7 +4,11 @@ Demo：https://jiangshuuu.github.io/travel_website/
 
 ## 介紹
 由六角學院舉辦的The F2E 活動，根據UI設計師的Figma設計稿，執行切版、串接交通部API。
-使用技術 Vue.js / Scss / Bootstrap / axios
+
+使用技術 Vue.js / Scss / Bootstrap / axios / RWD / Flex/Grid / JavaScript (ES6)
+
+
+
 
 ## 功能介紹
 1. 篩選縣市&該縣市地區資料
