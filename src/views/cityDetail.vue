@@ -21,6 +21,7 @@
         <span style="--i: 8">.</span>
       </div>
     </div>
+
     <div class="main">
       <div class="activity" v-show="activityData.length > 0">
         <div class="table">
@@ -262,6 +263,8 @@ export default {
       // Detail
       isDetail: false,
       detailData: [],
+      // Loading
+      isLoading: true,
     };
   },
   components: {

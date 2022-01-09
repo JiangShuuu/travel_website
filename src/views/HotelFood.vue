@@ -6,7 +6,8 @@
       :initial-detail="detailData"
       @close-detail="closeDetail"
     />
-    <div class="main">
+    <Spinner v-if="isLoading" />
+    <div class="main" v-else>
       <Selector @after-selector-city="afterSelectorCity" />
       <div class="main_area1" v-if="restaurantData.length > 0">
         <div class="title">
@@ -72,6 +73,7 @@ import Selector from "../components/Selector.vue";
 import ResPagination from "../components/R&Pagination.vue";
 import HotelPagination from "../components/H&Pagination.vue";
 import CheckOutInfo from "../components/CheckOutInfoP3.vue";
+import Spinner from "../components/Spinner.vue";
 
 export default {
   name: "Hotel",
@@ -82,6 +84,7 @@ export default {
     ResPagination,
     HotelPagination,
     CheckOutInfo,
+    Spinner,
   },
   data() {
     return {
@@ -106,6 +109,7 @@ export default {
       },
       detailData: [],
       isDetail: false,
+      isLoading: true,
     };
   },
   created() {
@@ -194,7 +198,9 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
+        this.isLoading = false;
       } catch (error) {
+        this.isLoading = false;
         console.log("無法取得飯店資料，請稍後再試!");
       }
     },

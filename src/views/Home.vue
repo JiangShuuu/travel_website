@@ -6,7 +6,8 @@
       :initial-detail="detailData"
       @close-detail="closeDetail"
     />
-    <div class="main">
+    <Spinner v-if="isLoading" />
+    <div class="main" v-else>
       <Selector @after-selector-city="afterSelectorCity" />
       <HotCity />
       <HotActivity
@@ -41,6 +42,7 @@ import HotActivity from "../components/HotActivity.vue";
 import HotView from "../components/HotView.vue";
 import ViewPagination from "../components/ViewPagination.vue";
 import CheckOutInfo from "../components/CheckOutInfoP3.vue";
+import Spinner from "../components/Spinner.vue";
 
 export default {
   name: "Home",
@@ -51,6 +53,7 @@ export default {
     HotView,
     ViewPagination,
     CheckOutInfo,
+    Spinner,
   },
   data() {
     return {
@@ -70,6 +73,7 @@ export default {
       },
       isDetail: false,
       detailData: [],
+      isLoading: true,
     };
   },
   created() {
@@ -180,7 +184,9 @@ export default {
         ) {
           return arr.indexOf(element) === index;
         });
+        this.isLoading = false;
       } catch (error) {
+        this.isLoading = false;
         console.log("無法取得景點資料，請稍後再試!");
       }
     },
