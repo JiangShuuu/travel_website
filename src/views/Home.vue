@@ -7,7 +7,7 @@
       @close-detail="closeDetail"
     />
     <Spinner v-if="isLoading" />
-    <div class="main" v-else>
+    <div class="main" else>
       <Selector @after-selector-city="afterSelectorCity" />
       <HotCity />
       <HotActivity

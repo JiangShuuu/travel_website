@@ -12,7 +12,8 @@
 <style lang="scss" scoped>
 @import "./../assets/scss/All.scss";
 .spinner {
-  padding-top: 5rem;
+  height: 100vh;
+  padding-top: 15rem;
   .bouncing-loader {
     @include flexCenter;
     -webkit-box-reflect: below -0.15px linear-gradient(transparent, rgba(100, 20, 0, 0.2));
